@@ -1,26 +1,36 @@
 package spa;
 
+import java.util.Comparator;
+import java.util.Set;
+
 public class UserManagement implements IUserManagement{
 
 	@Override
-	public void afficherTousLesUtilisateurs(String type) throws Exception {
-		if (!type.equals("client") && 
-			    !type.equals("gerant") && 
-			    !type.equals("tous") &&
-			    !type.equals("employee")) {
-			    System.out.println("choix invalide");
-			}
-		
-		System.out.println("=== Liste des utilisateurs ===");
-        for (user u : UserDAO.getAll()) {
-        	if(type.equals("tous")) {
-        		System.out.println(u.nom + " | " + u.cin + " | " + u.email);
-        	}
-        	if(u.role.equals(type)) {
-        		System.out.println(u.nom + " | " + u.cin + " | " + u.email);
-        	}
-        }
+	public void afficherTousLesUtilisateurs(String role) throws Exception {
+	    Set<String> typesValides = Set.of("client", "gerant", "employee", "tous");
+
+	    if (!typesValides.contains(role)) {
+	        System.out.println("choix invalide");
+	        return;
+	    }
+
+	    System.out.println("=== Liste des utilisateurs ===");
+
+	    
+	    UserDAO.getAll().stream()
+	        .filter(u -> role.equals("tous") || u.role.equals(role))
+	        .sorted(Comparator.comparing(u -> u.nom))
+	        .forEach(u -> System.out.printf("%s | %s | %s%n", u.nom, u.cin, u.email));
+
+	    
+	    long total = UserDAO.getAll().stream()
+	        .filter(u -> role.equals("tous") || u.role.equals(role))
+	        .count();
+	    System.out.println("\nTotal utilisateurs : " + total);
+
 	}
+
+
 
 	@Override
 	public void deleteUserByCin(String cin) throws Exception {

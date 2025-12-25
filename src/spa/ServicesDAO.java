@@ -33,20 +33,24 @@ public class ServicesDAO {
     	return s;
     }
     
-    public static Services getbynom(String nom)throws Exception {
-    	if(!Files.isExecutable(path)) return null;
-    	
-    	List<String> lines = Files.readAllLines(path);
-    	
-    	for(String line : lines) {
-    		Services s = Services.fromLine(line);
-    		if(s.nom.equals(nom)) {
-    			System.out.print(s.toLine());
-    			return s;
-    		}
-    	}
-    	System.out.print("user not found");
-    	return null;
+    public static void getByNom(String nom) throws Exception {
+
+        if (!Files.exists(path)) {
+            System.out.println("File not found");
+            return;
+        }
+
+        List<String> lines = Files.readAllLines(path);
+
+        boolean found = lines.stream()
+                .filter(line -> line.contains(nom)) 
+                .peek(System.out::println)
+                .findAny()
+                .isPresent();
+
+        if (!found) {
+            System.out.println("Service not found");
+        }
     }
     
     

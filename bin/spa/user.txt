@@ -1,4 +1,3 @@
 bm1234;yassine;gerant;76626;yas@gmail.com;1234
 bm12345;hamza;employee;62215;h@gmail.com;1234
-bilal123;bilal;employee;1554;dfz;541
-15;imad;employee;54;dzqsc;54
+bm44469;cheraa3;gerant;766260026;y.cheraa2003@gmail.com;2003

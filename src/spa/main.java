@@ -1,12 +1,27 @@
 package spa;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class main {
+class MonThread extends Thread{
+	public void run() {
+		System.out.println("Hello wworld");
+	}
+}
 
+
+public class Main {	
     public static void main(String[] args) throws Exception {
-
+    	
         Scanner scan = new Scanner(System.in);
 
         while (true) {
@@ -172,9 +187,10 @@ public class main {
     public static void menuGerantServices(Scanner scan, ServiceManagement serviceMgmt) throws Exception {
         while (true) {
             System.out.println("\n--- GÉRANT : Services ---");
-            System.out.println("1 - Afficher tous");
+            System.out.println("1 - Afficher");
             System.out.println("2 - Ajouter");
             System.out.println("3 - Supprimer");
+            System.out.println("4 - afficher par Nom");
             System.out.println("0 - Retour");
             System.out.print("Choix : ");
             String choix = scan.next();
@@ -196,6 +212,12 @@ public class main {
                     serviceMgmt.supprimerService(nomSup);
                     System.out.println("✔ Service supprimé !");
                     break;
+                case "4":
+                    System.out.print("Nom service à rechercher : ");
+                    scan.nextLine(); 
+                    String nomRe = scan.nextLine();
+                    serviceMgmt.afficherParNom(nomRe);
+                    break;
                 case "0":
                     return;
                 default:
@@ -208,7 +230,7 @@ public class main {
     public static void menuGerantRdv(Scanner scan, RendezVousManagement rdvService) throws Exception {
         while (true) {
             System.out.println("\n--- GÉRANT : Rendez-vous ---");
-            System.out.println("1 - Afficher tous");
+            System.out.println("1 - Afficher");
             System.out.println("2 - Créer");
             System.out.println("3 - Supprimer");
             System.out.println("4 - Modifier");

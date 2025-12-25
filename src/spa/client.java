@@ -7,5 +7,8 @@ class client extends user{
 		
 	}
 	
+	public int getAge() {
+		return this.age;
+	}
 
 }

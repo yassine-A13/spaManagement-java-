@@ -8,6 +8,8 @@ public class user {
     public int telephone;
     public String email;
     public String password;
+    
+    
 
     public user (String nom, String cin, int telephone, String email, String password, String role) {
         this.nom = nom;

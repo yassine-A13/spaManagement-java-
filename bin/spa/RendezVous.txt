@@ -1,0 +1,2 @@
+1;2025-12-12;a;a;a;11.0;Accepter
+1;2025-08-22;cheraa;mm;test;20000.0;Accepter

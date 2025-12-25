@@ -3,6 +3,8 @@ package spa;
 import java.nio.file.*;
 import java.util.*;
 
+
+
 public class UserDAO {
 	public static Path path = Paths.get("src/spa/user.txt");
 
@@ -18,12 +20,12 @@ public class UserDAO {
     public static List<user> getAll() throws Exception {
     	if(!Files.exists(path)) return new ArrayList<>();
     	
-    	List<String> lines = Files.readAllLines(path);
+    	List<
+    	String> lines = Files.readAllLines(path);
     	List<user> users = new ArrayList<>();
     	
     	for(String line : lines) {
             users.add(user.fromLine(line));
-            
             
     	}
     	return users;
